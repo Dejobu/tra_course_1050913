@@ -1,0 +1,60 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<div vflex="1" 
+		viewModel="@id('vm') @init('org.zkoss.training.mvvm.ChildrenTemplateVM')">
+		<combobox model="@load(vm.modeList)" selectedItem="@bind(vm.selectedMode)" readonly="true">
+			<template name="model">
+				<comboitem label="@load(each)"/>
+			</template>
+		</combobox>
+		<vlayout vflex="1" children="@load(vm.prodModel) @template(vm.selectedMode)" style="overflow: auto">
+			<template name="DEFAULT" var="product">
+				<groupbox mold="3d" title="${product.name}">
+					<hlayout valign="middle">
+						<div width="150px" style="text-align: center;">
+							<image src="@load(product.imgPath)" />
+						</div>
+						<vlayout style="width: 150px;">
+							<div>Price: $<label value="@load(product.price)" /></div>
+							<div>Quantity: <label value="@load(product.quantity)" /></div>
+						</vlayout>
+						<div>
+							<spinner constraint="min 1 max ${product.quantity}" value="1" />
+							<button label="Add" iconSclass="z-icon-shopping-cart z-icon-large" />
+						</div>
+					</hlayout>
+				</groupbox>
+			</template>
+			<template name="SMALL" var="product">
+				<groupbox mold="3d" title="${product.name}">
+					<hlayout valign="middle">
+						<div width="150px" style="text-align: center;">
+							<image src="@load(product.imgPath)" width="30px"/>
+						</div>
+						<vlayout style="width: 150px;">
+							<div>Price: $<label value="@load(product.price)" /></div>
+							<div>Quantity: <label value="@load(product.quantity)" /></div>
+						</vlayout>
+						<div>
+							<spinner constraint="min 1 max ${product.quantity}" value="1" />
+							<button label="Add" iconSclass="z-icon-shopping-cart z-icon-large" />
+						</div>
+					</hlayout>
+				</groupbox>
+			</template>
+			<template name="LIST" var="product">
+				<hlayout>
+				<label value="${product.name}" />
+				<div>
+					Price: $
+					<label value="@load(product.price)" />
+				</div>
+				<div>
+					Quantity:
+					<label value="@load(product.quantity)" />
+				</div>
+				</hlayout>
+			</template>
+		</vlayout>
+	</div>
+</zk>

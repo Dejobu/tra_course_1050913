@@ -1,0 +1,10 @@
+.personBox .z-a {
+	color: Crimson;
+}
+.personBox {
+	background-color: PaleGoldenrod;
+	min-height: 50px;
+	padding: 10px;
+	border-radius: 10px;
+	display: inline-block;
+}

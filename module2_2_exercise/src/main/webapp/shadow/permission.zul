@@ -1,0 +1,35 @@
+<?import org.zkoss.training.shadow.PermissionViewModel?>
+<zk xmlns:sh="shadow" xmlns:x="xhtml" xmlns:n="native">
+	<div viewModel="@id('vm') @init('PermissionViewModel')">
+		<button label="toggle permission" onClick="@command(PermissionViewModel.TOGGLE_PERMISSION)"/>
+		<checkbox label="toggle permission" checked="@bind(vm.permitted)"/>
+		<window border="normal">
+			<sh:if test="@load(vm.permitted)">
+				<n:h2>YOU'RE IN</n:h2>
+<!-- 				<x:h2 textContent="YOU'RE IN"/> -->
+			</sh:if>
+			<sh:choose>
+				<sh:when test="@load(vm.permitted)">
+					<x:section textContent="Section Content Text">
+						<n:div>
+							<n:span>
+								<a onClick="">test</a>
+							</n:span>
+						</n:div>
+						<button label="secret button"/>
+					</x:section>
+				</sh:when>
+				<sh:otherwise>Access Denied</sh:otherwise>
+			</sh:choose>
+		</window>
+
+		<sh:apply template="@load(vm.permitted ? 'accessGranted' : 'accessDenied')" >
+			<template name="accessGranted">
+				now you can click the button above
+			</template>
+			<template name="accessDenied">
+				better get some permission first
+			</template>
+		</sh:apply>
+	</div>
+</zk>

@@ -1,0 +1,22 @@
+<?component name="formatLabel" class="org.zkoss.training.shop.component.FormatLabel" ?>
+<zk>
+	<grid>
+		<columns>
+			<column label="Name" />
+			<column label="Quantity" width="60px" />
+			<column label="Price" width="60px" />
+			<column label="Sub Total" width="100px"/>
+		</columns>
+		<rows children="@init(order.items)">
+			<template name="children" >
+				<row value="@init(each)" >
+					<label value="@init(each.name)"/>
+					<label value="@init(each.quantity)"/>
+					<label value="@init(each.price)"/>
+					<formatLabel format="%.2f" value="@init(each.price * each.quantity)" maxlength="6"  />
+				</row>
+			</template>
+		</rows>
+	</grid>
+	<label/>
+</zk>

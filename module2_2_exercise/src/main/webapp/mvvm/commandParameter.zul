@@ -1,0 +1,31 @@
+<zk>
+	<vlayout
+		viewModel="@id('vm')@init('org.zkoss.training.mvvm.CommandVM')">
+		<!-- command binding -->
+		<toolbar>
+			<button label="New"  />
+			<button label="Save"  />
+		</toolbar>
+		empty command:
+		<listbox model="@load(vm.items)" selectedItem="@bind(vm.selection)" checkmark="true">
+			<listhead>
+				<listheader>names</listheader>
+			</listhead>
+			<template name="model">
+			<listitem>
+				<listcell>${each}</listcell>
+			</listitem>
+			</template>
+		</listbox>
+		<button  label="save"/>
+		
+		default command:
+		<button label="invoke default command" />
+		
+		pass parameters: (one or multiple)
+		<button label="show" />
+		<textbox value="John"/>
+		<button label="show" />
+		<button label="show component" />
+	</vlayout>
+</zk>

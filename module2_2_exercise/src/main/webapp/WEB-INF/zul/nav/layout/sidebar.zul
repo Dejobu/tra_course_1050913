@@ -1,0 +1,26 @@
+<?import org.zkoss.training.navigation.SidebarViewModel?>
+
+<zk>
+	<navbar orient="vertical"
+		viewModel="@id('vm') @init('org.zkoss.training.navigation.SidebarViewModel')"
+		onSelect="@command(SidebarViewModel.SELECT_NAVIGATION_ITEM, navigationItem=self.selectedItem.attributes.navElement)">
+		<apply template="nav-items" elements="@init(vm.navigationModel.elements)"/>
+	</navbar>
+	
+	<template name="navigation-item">
+		<navitem label="@load(navElement.label)" iconSclass="@load(navElement.icon)" selected="@load(navElement.active)" />
+	</template>
+	
+	<template name="sub-navigation">
+		<nav label="@load(navElement.label)" iconSclass="@load(navElement.icon)" 
+			onOpen="@command(SidebarViewModel.OPEN_SUB_NAVIGATION, subNavigation=navElement, open=event.open)">
+			<apply template="nav-items" elements="@ref(navElement.elements)"/>
+		</nav>
+	</template>
+
+	<template name="nav-items">
+		<forEach items="@load(elements)" var="element">
+ 			<apply template="@load(element.type)" navElement="@ref(element)"/>
+		</forEach>
+	</template>
+</zk>

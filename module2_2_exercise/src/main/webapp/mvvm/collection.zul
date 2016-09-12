@@ -1,0 +1,12 @@
+<zk>
+<div 
+		viewModel="@id('vm') @init('org.zkoss.training.mvvm.CollectionBindingVM')">
+	<listbox  width="200px">
+		<listhead>
+			<listheader label="index" width="50px"/>
+			<listheader label="Item List"/>
+		</listhead>
+	</listbox>
+	Selected: <label />
+</div>
+</zk>

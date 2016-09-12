@@ -1,0 +1,16 @@
+<zk>
+
+	<window viewModel="@id('vm') @init('org.zkoss.training.mvvm.ValidatorVM')"  >
+		<vlayout>
+			validate single field
+			<textbox />
+			<label value="@load(vm.email)"/>
+		</vlayout>
+		<separator bar="true"/>
+		<vlayout>
+			accept parameters: price should be 0 ~ 100
+			<intbox></intbox>
+			<label style="color:red"/>
+		</vlayout>
+	</window>
+</zk>

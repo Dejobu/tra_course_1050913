@@ -1,0 +1,16 @@
+<zk>
+	<div viewModel="@id('vm')@init('org.zkoss.training.shadow.DynamicTemplateVM')" >
+		<button label="toggle" onClick="@command('toggle')"/>
+		<vlayout>
+			<apply template="@load(vm.edit?'edit':'normal')" />
+		</vlayout>
+		<template name="normal">
+			<label value="@init(vm.today)" />
+			<label value="@init(vm.value)" />
+		</template>
+		<template name="edit">
+			<datebox value="@bind(vm.today)" />
+			<textbox value="@bind(vm.value)" />
+		</template>
+	</div>
+</zk>

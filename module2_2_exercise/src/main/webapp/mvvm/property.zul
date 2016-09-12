@@ -1,0 +1,11 @@
+<zk>
+<vlayout >
+@init
+
+@load
+
+@save
+		
+@bind		
+</vlayout>
+</zk>

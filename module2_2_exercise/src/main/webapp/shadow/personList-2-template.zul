@@ -1,0 +1,10 @@
+<?style src="/resources/css/personList.css"?>
+<zk xmlns:sh="shadow">
+	<div viewModel="@id('vm') @init('org.zkoss.training.shadow.PersonListViewModel')">
+		<button iconSclass="z-icon-plus" onClick="@command('addPerson')"/>
+		<div>
+		</div>
+	</div>
+
+
+</zk>

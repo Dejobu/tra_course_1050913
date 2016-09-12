@@ -1,0 +1,40 @@
+.center {
+	text-align: center;
+}
+.left {
+	text-align: left;
+}
+.right {
+	text-align: right;
+}
+.red {
+	color: red;
+}
+.z-icon-large {
+	font-size: 16px;
+}
+/* North */
+.head div {
+	display: inline-block;
+	line-height: 36px;
+}
+.title .z-label {
+	font-size: 28px;
+}
+.logoff {
+	float: right;
+}
+/* Product View */	
+
+
+/* Cart View */
+.text-highlight .z-listfooter-content {
+	font-weight: bold;	
+}
+/* Order View */
+.z-row .z-detail-outer {
+	padding: 4px 10px;
+}
+.z-cell .z-label {
+	color: #636363;
+}

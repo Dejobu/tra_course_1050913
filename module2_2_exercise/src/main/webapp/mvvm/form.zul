@@ -1,0 +1,18 @@
+<zk>
+	<window title="Property Binding" 
+		viewModel="@id('vm') @init('org.zkoss.training.mvvm.FormBindingVM')">
+		<vlayout>
+			<textbox value="@bind(vm.user1.name)" />
+			<textbox value="@bind(vm.user1.password)" />
+		</vlayout>
+	</window>
+	<window title="Form Binding" 
+		viewModel="@id('vm') @init('org.zkoss.training.mvvm.FormBindingVM')">
+		<vlayout >
+			<textbox  />
+			<textbox />
+			Dirty Status: <label  />
+			<button label="Save"  />
+		</vlayout>
+	</window>
+</zk>

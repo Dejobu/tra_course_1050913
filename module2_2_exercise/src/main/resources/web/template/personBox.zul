@@ -1,0 +1,13 @@
+<zk>
+	<div sclass="personBox" width="100px">
+		<a iconSclass="z-icon-times" onClick="@command(removeCommand, person=person)" style="float: right;"/>
+		<image src="@init(person.icon)"/>
+		<div>
+			<label value="@init(person.name)"/>
+			<span sclass="@init(person.gender eq GenderType.MALE ? 'z-icon-mars' : person.gender eq GenderType.FEMALE ? 'z-icon-venus' : 'z-icon-genderless')"/>
+		</div>
+		<div>
+			<label value="@init(person.age)"/>
+		</div>
+	</div>
+</zk>

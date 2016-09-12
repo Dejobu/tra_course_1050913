@@ -1,0 +1,41 @@
+<zk>
+	<style>
+	.title{
+		font-size: 20px;
+		font-weight: bold; }
+	.box{
+		border: solid 1px;
+		padding:10px;
+		margin:10px;
+	}
+	</style>
+	<groupbox mold="3d">
+		<caption label="Composer to ViewModel" sclass="title" />
+		<hlayout>
+			<div sclass="box" hflex="1"  apply="org.zkoss.training.mvvm.SenderComposer">
+				Sender - composer
+				<button id="update" label="update"/>
+			</div>
+			<div sclass="box" hflex="1" viewModel="@id('vm')@init('org.zkoss.training.mvvm.ReceiverVM')"> 
+				Receiver - ViewModel
+				<label value="@load(vm.value)" style="color:red"/>
+			</div>
+		</hlayout>
+	</groupbox>
+	<separator height="30px"/>
+	<groupbox mold="3d">
+		<caption label="ViewModel to Composer" sclass="title" />
+		<hlayout>
+			<div sclass="box"  hflex="1" binder="@init(queueName='myqueue')"
+				viewModel="@id('vm') @init('org.zkoss.training.mvvm.SenderVM')">
+				Sender - ViewModel
+				<button id="addProduct" label="refresh"
+					onClick="@global-command('refresh')" />
+			</div>
+			<div sclass="box" hflex="1" apply="org.zkoss.training.mvvm.ReceiverComposer">
+			Receiver - composer
+				<label id="msg" style="color:red"/>
+			</div>
+		</hlayout>
+	</groupbox>
+</zk>

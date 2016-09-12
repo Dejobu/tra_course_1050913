@@ -1,0 +1,5 @@
+<zk>
+	<window title="Sign Up" 
+		viewModel="@id('vm') @init('org.zkoss.training.shop.controller.SignupVM')" border="normal" width="500px">
+	</window>
+</zk>

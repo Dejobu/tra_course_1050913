@@ -1,0 +1,12 @@
+<zk>
+
+	<window viewModel="@id('vm') @init('org.zkoss.training.mvvm.ConverterVM')">
+		<vlayout>
+		</vlayout>
+		<separator bar="true"/>
+		<vlayout>
+		Married: <label />
+		<button label="Change Marriage Status"  />
+		</vlayout>
+	</window>
+</zk>

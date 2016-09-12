@@ -1,0 +1,6 @@
+<zk>
+	<vlayout>
+		<separator bar="true"/>
+		enter a name and show "hello [name]" 
+	</vlayout>
+</zk>
