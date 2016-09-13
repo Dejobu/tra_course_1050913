@@ -34,6 +34,8 @@ public class ShoppingCartVM {
 	public static final String REMOVE = "remove";
 	public static final String CLEAR = "clear";
 	public static final String UPDATE = "update";
+	private Product product=null;
+	private int quantity=0;
 
 	@Init
 	public void init(@ContextParam(ContextType.DESKTOP) Desktop desktop) {
@@ -104,8 +106,6 @@ public class ShoppingCartVM {
 	}
 	
 	private void refreshUIStatus(String status) {
-		abc 
-		dasdf
 		
 		if (ShoppingCartVM.REMOVE.equals(status)
 				|| ShoppingCartVM.CLEAR.equals(status)) {
