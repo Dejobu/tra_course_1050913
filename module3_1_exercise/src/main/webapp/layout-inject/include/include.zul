@@ -1,0 +1,9 @@
+<zk>
+	<window id="inc1win" title="Include 1 Window" border="normal">
+		<button label="Button in inc1"></button>
+		<label value="Page: ${page}"></label>
+		<label value="SpaceOwner: ${self.spaceOwner}"></label><separator/>
+		<label value="Some from arg: ${arg.some}"></label><separator/>
+		<label value="Some from param: ${param.somearg}"></label><separator/>
+	</window>
+</zk>

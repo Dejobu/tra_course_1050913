@@ -1,0 +1,15 @@
+<zk>
+	<div apply="org.zkoss.training.debugging.TimerComposer">
+		This page shows a message every second:
+		<label id="message" />
+		<timer id="refreshTimer" delay="1000" repeats="true" onCreate="self.stop()">
+		</timer>
+	</div>
+	<!--
+	debug:
+	* no AU sent
+	* check code
+	 refreshTimer stops itself on onCreate
+	 onCreate="self.stop()"
+	 -->
+</zk>

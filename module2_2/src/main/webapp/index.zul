@@ -1,0 +1,126 @@
+<?page title="ZK Store"?>
+<?init class="org.zkoss.training.shop.service.WorkbenchInit" ?>
+<?link rel="stylesheet" type="text/css" href="/resources/css/customize.css"?>
+<?import org.zkoss.training.shop.controller.ShoppingCartVM?>
+<zk>
+    <borderlayout hflex="1" vflex="1" >
+        <north size="36px" border="none" viewModel="@id('vm') @init('org.zkoss.training.shop.controller.HeaderVM')">
+            <div sclass="head">
+                <div sclass="title">Shopping Cart</div>
+                <div sclass="logoff">
+                    <button label="Log Off" iconSclass="z-icon-sign-out" onClick="@command('logoff')"/>
+                </div>
+            </div>
+        </north>
+        <center border="normal">
+            <!-- Introduce Collection Binding -->
+            <div vflex="1" viewModel="@id('vm') @init('org.zkoss.training.shop.controller.ProductVM')">
+                <grid vflex="1" model="@load(vm.prodModel)">
+                    <columns sizable="true">
+                        <column image="/resources/img/Bullet-10x10.png" align="center" width="130px" />
+                        <column label="Name" width="100px" />
+                        <column label="Price" width="50px" />
+                        <column label="Quantity" width="80px" />
+                        <column label="Arrive Date" width="110px" />
+                        <column label="Buy" />
+                    </columns>
+                    <template name="model" var="product">
+                        <row>
+                            <image src="@init(product.imgPath)" />
+                            <label value="@init(product.name)" />
+                            <label value="@init(product.price)" />
+                            <label value="@init(product.quantity)" />
+                            <!-- 							<label value="@load(product.createDate)" /> -->
+                            <!-- Introduce Converter -->
+                            <label value="@init(product.createDate) @converter('formatedDate', format='yyyy/MM/dd')" />
+                            <cell>
+                                <spinner constraint="min 1 max ${product.quantity}" value="1" />
+                                <!-- 								<button label="Add" iconSclass="z-icon-shopping-cart z-icon-large" /> -->
+                                <!-- Introduce Global Command -->
+                                <button label="Add" iconSclass="z-icon-shopping-cart z-icon-large"
+                                 onClick="@global-command('addToCart', prod=product, quantity=self.previousSibling.value)" />
+                            </cell>
+                        </row>
+                    </template>
+                </grid>
+            </div>
+        </center>
+        <east size="30%" border="normal">
+            <div vflex="1" viewModel="@id('vm') @init('org.zkoss.training.shop.controller.ShoppingCartVM')">
+                <!-- Introduce Selection Handling -->
+                <button label="@load(vm.editMode?'Back':'Edit')" onClick="@command('edit')"/>
+                <!-- dynamic template example -->
+                <listbox fixedLayout="true" model="@load(vm.cartModel)" selectedItem="@bind(vm.selectedCartItem)">
+                    <listhead sizable="true">
+                        <listheader label="Name" hflex="1" />
+                        <listheader label="Price" hflex="min" />
+                        <listheader label="Amount" hflex="min" />
+                        <listheader label="Subtotal" align="right" hflex="min" />
+                        <listheader align="center" width="50px" />
+                    </listhead>
+                    <template name="model" var="cartItem">
+                        <listitem>
+                            <listcell label="${cartItem.product.name}" />
+                            <listcell label="${cartItem.product.price}" />
+                    		<if test="@load(!vm.editMode)">
+                            <listcell label="${cartItem.amount}" />
+                    		</if>
+							<if test="@load(vm.editMode)">
+                    		<listcell>
+                    			<intbox value="@bind(cartItem.amount)"
+                    				width="40px" />
+                    		</listcell>
+                    		</if>
+                            <!-- Introduce Custom Converter -->
+                            <listcell label="@load(cartItem.subTotal) @converter(vm.subTotalConverter)" />
+                    		<listcell>
+                                <button iconSclass="z-icon-times-circle z-icon-large red" onClick="@command('remove', item=cartItem)" />
+                            </listcell>
+                        </listitem>
+                    </template>
+                    <listfoot>
+                        <listfooter span="2">
+                            <hlayout>
+                                <button label="Submit" disabled="@load(vm.disabled)" onClick="@command('submitCart')" />
+                                <button label="Clear" disabled="@load(vm.disabled)" onClick="@command(ShoppingCartVM.CLEAR)" />
+                            </hlayout>
+                        </listfooter>
+                        <listfooter>
+                            Total: 
+                        </listfooter>
+                        <listfooter sclass="text-highlight right" label="@load(vm.totalFooter)"></listfooter>
+                    </listfoot>
+                </listbox>
+                <div sclass="center" width="100%">
+                    <image src="@load(vm.selectedCartItem.product.imgPath)" />
+                </div>
+                Comment
+                <textbox rows="5" width="98%" value="@bind(vm.comment)" />
+            </div>
+        </east>
+        <south size="30%" border="normal" title="History Order" collapsible="true">
+            <div height="100%" viewModel="@id('vm') @init('org.zkoss.training.shop.controller.OrderVM')">
+                <grid vflex="1" model="@load(vm.orderModel)">
+                    <columns>
+                        <column width="40px" />
+                        <column label="Status" width="25%" />
+                        <column label="Comment" width="50%" />
+                        <column label="Total Price" width="80px" />
+                    </columns>
+                    <template name="model" var="order">
+                        <row>
+                            <detail>
+                            	<apply templateURI="/WEB-INF/partial/_orderDetailView.zul"/> <!--to modulerize the detail view order="@ref(order)" -->
+                            </detail>
+                            <label value="@init(order) @converter(vm.orderStatusConverter)" />
+                            <label value="${order.description}" />
+                            <cell>
+                                $ <label value="@init(order.total) @converter('formatedNumber', format='###,###.##')" />
+                            </cell>
+                        </row>
+                    </template>
+                </grid>
+            </div>
+        </south>
+    </borderlayout>
+</zk>

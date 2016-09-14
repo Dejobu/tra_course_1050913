@@ -1,0 +1,17 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout-inject/composition/_template.zul"?>
+<zk>
+	<window self="@{define(product)}" title="Product A" width="100px" border="normal">
+		Product 1f
+	</window>
+	<window self="@{define(product)}" title="Product B" width="200px" border="normal">
+		Product 2
+	</window>
+	<window self="@{define(product)}" title="Product C" width="300px" border="normal">
+		Product 2
+	</window>
+	<button self="@{define(closeabc)}" label="Close" onClick='alert("Close")'/>
+	<button self="@{define(closeabc)}" label="Close" onClick='alert("Close")'/>
+	<div self="@{define(detail)}" width="300px" >
+		Data Here
+	</div>
+</zk>

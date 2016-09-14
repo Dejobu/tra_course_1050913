@@ -1,0 +1,55 @@
+<?import org.zkoss.training.shadow.HierarchyViewModel?>
+<zk xmlns:sh="shadow" xmlns:x="xhtml" xmlns:n="native">
+	<style>
+		.treeChildren {
+			padding-left: 20px;
+		}
+		.treeNode {
+			background-color: NavajoWhite;
+			border-radius: 5px;
+			padding: 2px 4px;
+			margin-bottom: 2px;
+			display: inline-block;
+		}
+		.red-text {
+			color: Crimson;
+		}
+		.green-text {
+			color: ForestGreen;
+		}
+		.black-text {
+			color: Black;
+		}
+	</style>
+	<div viewModel="@id('vm') @init('HierarchyViewModel')">
+		<div>
+			<sh:apply template="node" node="@init(vm.root)" nodeTemplate="myTreeNode">
+				<template name="myTreeNode">
+					<div sclass="treeNode">
+						<a iconSclass="@load(node.open ? 'z-icon-folder-open' : 'z-icon-folder')" sclass="black-text" onClick="@command('toggleOpen', node=node)"/>
+						<label value="@init(node.data)"/>
+						<a iconSclass="z-icon-plus" sclass="green-text" onClick="@command('addChildNode', parent=node)"/>
+						<a iconSclass="z-icon-times-circle" sclass="red-text" onClick="@command('removeNode', node=node)"/>
+					</div>
+				</template>
+			</sh:apply>
+		</div>		
+
+		<template name="node">
+			<div>
+				<sh:apply template="@init(nodeTemplate)" node="@init(node)"/>
+				<if test="@load(node.open)">
+					<sh:apply template="nodeList" nodes="@init(node.children)"/>
+				</if>
+			</div>
+		</template>	
+
+		<template name="nodeList">
+			<div sclass="treeChildren">
+				<sh:forEach items="@init(nodes)" var="child">
+					<sh:apply template="node" node="@init(child)"/> 
+				</sh:forEach>
+			</div>		
+		</template>
+	</div>
+</zk>

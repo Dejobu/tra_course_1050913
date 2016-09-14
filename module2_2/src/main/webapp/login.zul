@@ -1,0 +1,33 @@
+<?page title="ZK Shop - Login"?>
+<zk>
+    <!-- Introduce Property/Command Binding -->
+    <window id="loginWin" border="normal"  hflex="min" title="ZK Shop - Login"  mode="highlighted" position="center"
+                viewModel="@id('vm') @init('org.zkoss.training.shop.controller.LoginVM')"
+                onOK="@command('login')" onCancel="@command('reset')">
+            <grid hflex="min">
+                <rows>
+                	<row>
+                		Name:
+                		<textbox value="@bind(vm.name)"
+                			focus="@load(vm.focus)" instant="true" />
+                	</row>
+                	<!-- instant="true" for better user experience-->
+                	<row>
+                		Password:
+                		<textbox type="password"
+                			value="@bind(vm.password)" instant="true" />
+                	</row>
+                	<row spans="2" align="right">
+                		<button label="Login"
+                			iconSclass="z-icon-sign-in"
+                			disabled="@load(empty vm.name or empty vm.password)"
+                			onClick="@command('login')" />
+                	</row>
+                	<row spans="2">
+                		<label value="@load(vm.message)"
+                			style="color:red" />
+                	</row>
+                </rows>
+            </grid>
+    </window>
+</zk>

@@ -1,0 +1,26 @@
+<zk>
+<!--
+* let audience find the root cause of low performance 
+* DynamicHierarchyTreeModel is "clear-on-demand" example 
+ -->
+	<zscript><![CDATA[
+	    //import org.zkoss.training.performance.DynamicHierarchyTreeModel;
+		//		draggable="node" droppable="node"
+		//		onDrop="treeModel.move(event.getDragged().getValue(), self.getValue())"
+	    import org.zkoss.training.performance.LoadOnDemandTreeModel;
+		TreeModel treeModel = new LoadOnDemandTreeModel("My Tree");
+	]]></zscript>
+
+	<tree model="${treeModel}">
+		<template name="model">
+			<treeitem onClick='Clients.log(Arrays.toString(treeModel.getPath(self.getValue())))'>
+				<treerow>
+					<treecell>
+						<label value="${each}"/>
+					</treecell>
+				</treerow>
+			</treeitem>
+		</template>
+	</tree>
+	
+</zk>

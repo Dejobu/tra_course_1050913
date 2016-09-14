@@ -1,0 +1,20 @@
+<zk>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('longop.mvvm.EchoVM')">
+		<button onClick="@command('startLongOperation', comp=self.nextSibling)" label="start" />
+		<grid model="@load(vm.resultModel)" onEcho="@command('doLongOperation', comp=self)">
+			<columns>
+				<column label="First Name" />
+				<column label="Last Name" />
+				<column label="Married" />
+			</columns>
+			<template name="model">
+				<row>
+					<label value="${each.firstName}" />
+					<label value="${each.lastName}" />
+					<label value="@load(each.married) @converter(vm.marriageStatusConverter)" />
+				</row>
+			</template>
+		</grid>
+	</div>
+</zk>

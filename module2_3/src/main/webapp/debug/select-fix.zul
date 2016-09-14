@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="Sample" contentType="text/html;charset=UTF-8"?>
+<zk>
+<!--
+Debugging process:
+1. narrow down the problem: remove other Bandboxes
+2. check AU request: AU requests are sent correctly.
+3. form a hypothesis - selectedItem is not loaded 
+4. prove the hypothesis: print the bound property in onCtrlKey listener, found it is null.
+5. find the root cause: MVVM concept: calling a component's API doesn't trigger ZK to reload a load binding.
+6. apply the solution: replace the original onCtrlKey listener with a command binding and a notification.
+ -->
+	<window title="Sample"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('org.zkoss.training.debugging.case3.ContainerModel')" onCreate="@command('windowCreate')">
+		<grid span="true">
+			<rows>
+				<!-- DB System -->
+				<row valign="top" align="left">
+					<label value="DB System" />
+					<bandbox id="dbsSrc" mold="rounded" width="100%"
+						readonly="false" sclass="asg-bandbox-sti" autodrop="true"
+						tooltiptext="@load(vm.srcLabelsAndValues.combo[0].filterValue)"
+						onOpen="dbsSrcCombo.selectItem(null);"
+						onChange="@command('changeSrcFilter', level='0')"
+						ctrlKeys="^#down^#up"
+						value="@bind(vm.srcLabelsAndValues.combo[0].filterValue)"
+						onCtrlKey="@command('select')"
+						instant="true">
+						<!-- 
+						onCtrlKey="dbsSrcCombo.setFocus(true); dbsSrcCombo.selectItem(dbsSrcCombo.getItemAtIndex(0));System.out.println(vm.srcLabelsAndValues.combo[0].selectedValue);" 
+						-->
+						<bandpopup>
+							<listbox mold="paging" autopaging="false" focus="@load(vm.dbSelectorFocus)"
+								pageSize="3" width="450px"
+								id="dbsSrcCombo"
+								model="@load(vm.srcLabelsAndValues.combo[0].itemsList)"
+								selectedItem="@bind(vm.srcLabelsAndValues.combo[0].selectedValue)"
+								onOK="@command('srcDbSystemSelect')"
+								onClick="@command('srcDbSystemSelect')">
+								<template name="model" var="item">
+									<listitem value="@load(item)"
+										label="@load(item)" tooltiptext="@load(item)" />
+								</template>
+								<listhead>
+									<listheader
+										label="@load(vm.srcLabelsAndValues.combo[0].label)" />
+								</listhead>
+								<attribute name="onOK"><![CDATA[
+	dbsSrc.value = dbsSrcCombo.selectedItem.label;
+	dbsSrc.close();
+]]></attribute>
+									<attribute name="onClick"><![CDATA[
+	if(dbsSrcCombo.selectedItem!=null){
+		dbsSrc.value = dbsSrcCombo.selectedItem.label;
+		dbsSrc.close();
+	}
+]]></attribute>
+									<attribute name="onCancel"><![CDATA[
+	dbsSrc.close();
+	dbsSrc.focus();
+]]></attribute>
+								</listbox>
+							</bandpopup>
+						</bandbox>
+					</row>
+				</rows>
+			</grid>
+Press 'Ctrl+Down' to open the bandbox popup
+	</window>
+</zk>	

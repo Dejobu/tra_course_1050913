@@ -1,0 +1,8 @@
+<zk>
+<vlayout viewModel="@id('vm')@init('org.zkoss.training.component.TextboxVM')">
+	<textbox value="@bind(vm.value)"/>
+	instant:
+	<textbox instant="true" value="@bind(vm.value)"/>
+	what you type: <label value="@load(vm.value)"/>
+</vlayout>
+</zk>

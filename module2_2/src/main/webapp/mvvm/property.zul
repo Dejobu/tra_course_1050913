@@ -1,0 +1,18 @@
+<zk>
+<vlayout viewModel="@id('vm') @init('org.zkoss.training.mvvm.PropertyBindingVM')">
+@init
+	<textbox 
+		value="@init(vm.value)"></textbox>
+@load
+	<textbox 
+		value="@load(vm.value)"></textbox>
+
+@save
+	<textbox 
+		value="@save(vm.value)"></textbox>
+		
+@bind		
+	<textbox 
+		value="@bind(vm.value)"></textbox>
+</vlayout>
+</zk>

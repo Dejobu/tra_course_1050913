@@ -1,0 +1,15 @@
+<zk>
+<zscript><![CDATA[
+ListModelList model = new ListModelList(Locale.getAvailableLocales());                  
+]]></zscript>
+Rendering comparison
+ROD enabled:
+		<listbox  rows="5"  model="${model}">
+			<custom-attributes org.zkoss.zul.listbox.rod="true"/>
+		</listbox>
+<separator bar="true" height="30px"></separator>		
+ROD disabled:
+		<listbox  rows="5"  model="${model}">
+		</listbox>
+		
+</zk>

@@ -1,0 +1,8 @@
+<?component name="dual-listbox" extends="div" class="composite.mvc.DualMVCListbox"?>
+<zk>
+	<window title="Health Examination" border="normal" width="800px"
+		height="500px" apply="composite.ctrl.DualMVCListboxDemoCtrl">
+		<dual-listbox id="dualLBox"
+			renderer="composite.PersonDualListitemRenderer" />
+	</window>
+</zk>

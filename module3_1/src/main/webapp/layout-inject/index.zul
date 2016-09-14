@@ -1,0 +1,115 @@
+<?page title="ZK Layout Inject " contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="native">
+	<window title="ZK Layout Inject Technology" border="normal"	width="1024px">
+		<zscript><![CDATA[
+		void redirect(String uri) {
+			Executions.getCurrent().sendRedirect(uri, "_blank");
+		}
+		]]></zscript>
+		<style>
+			.z-demo-config {
+				border: 1px solid #CCC;
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				border-radius: 4px;
+			}
+			.z-demo-config legend span {
+				font-weight: bold;
+			}
+			div.z-row-cnt, .z-column-cnt {
+				padding: 5px 0;
+				text-align: center;
+				white-space: normal;
+			}
+			.conclusion {
+				font-family: Arial;
+				font-size: 16px;
+			}
+			.conclusion .notice {
+				color: red;
+			}
+			.conclusion .tech {
+				color: #008bb6;
+			}
+		</style>
+		<groupbox sclass="z-demo-config" closable="false">
+			<caption>Comparison</caption>
+			<grid>
+				<columns>
+					<column align="center">Technology</column>
+					<column align="center">SpaceOwner</column>
+					<column align="center">Inner Page</column>
+					<column align="center">Cause ID Conflict</column>
+					<column align="center">ZUL Source Only</column>
+					<column align="center">Sample</column>
+				</columns>
+				<rows>
+					<row>
+						Create Component
+						<label value=" " />
+						<label value="V" />
+						<label value="V" />
+						<label value="V" />
+						<a label="Sample" onClick='redirect("create-component")' />
+					</row>
+					<row>
+						Include Instant
+						<label value="V (Include)" />
+						<label value=" " />
+						<label value=" " />
+						<label value="V" />
+						<cell rowspan="2">
+							<a label="Sample" onClick='redirect("include")' />
+						</cell>
+					</row>
+					<row>
+						Include Defer
+						<label value="V (New Page)" />
+						<label value="V" />
+						<label value=" " />
+						<label value=" " />
+					</row>
+					<row>
+						Macro
+						<label value="V (Macro)" />
+						<label value=" " />
+						<label value=" " />
+						<label value="V" />
+						<cell rowspan="2">
+							<a label="Sample" onClick='redirect("macro")' />
+						</cell>
+					</row>
+					<row>
+						Macro Inline
+						<label value=" " />
+						<label value=" " />
+						<label value="V" />
+						<label value="V" />
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox sclass="z-demo-config" closable="false">
+			<caption>Other Technology</caption>
+			<a label="Composition Sample" onClick='redirect("composition")' />
+		</groupbox>
+		<groupbox sclass="z-demo-config conclusion" closable="false">
+			<caption>Conclusion</caption>
+			<h:ol>
+				<h:li>
+					The
+					<h:span class="tech">Include Auto</h:span>
+					is used to auto detect source type, users can add
+					not only ZUL, but also other web resource(e.g. jsp,
+					css, js).
+				</h:li>
+				<h:li>
+					The result of
+					<h:b>Execution.createComponent()</h:b>
+					is the same as
+					<h:span class="tech">Include Instant.</h:span>
+				</h:li>
+			</h:ol>
+		</groupbox>
+	</window>
+</zk>

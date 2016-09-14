@@ -1,0 +1,14 @@
+<zk>
+	<window title="Huge Data Demo" border="normal" width="800px"
+		height="800px" apply="org.zkoss.training.hugedata.HugeDataCtrl">
+		<custom-attributes org.zkoss.zul.listbox.rod="true" />
+
+		<listbox id="personListbox" rows="10" mold="paging" pageSize="10">
+			<listhead sizable="true">
+				<listheader label="First Name"></listheader>
+				<listheader label="Last Name"></listheader>
+				<listheader label="Married"></listheader>
+			</listhead>
+		</listbox>
+	</window>
+</zk>

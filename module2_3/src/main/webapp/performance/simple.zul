@@ -1,0 +1,40 @@
+<zk xmlns:w="client">
+
+	<!-- waiting for server -->
+	<!-- check dev tool/network tab -->
+	<button label="I am slow..." 
+		onClick='
+			Thread.sleep(3000);
+			Clients.showNotification("Phew Done.")'/>
+	
+	<!-- busy after response -->
+	<!-- check dev tool/timeline ,profiling -->
+	<button label="I am differently slow!" 
+		onClick='
+			Clients.evalJavaScript("for(var i = 0; i &lt; 20000000; i++) {new Date()}");
+			Clients.showNotification("Phew Done.");'/>
+	
+	<!-- busy before sending --> 
+	<!-- check dev tool/timeline ,profiling, breakpoint in doCmdsNow() -->
+	<button label="I am more different!" 
+		w:onClick="for(var i = 0; i &lt; 20000000; i++) {new Date()}" 
+		onClick='Clients.showNotification("Phew Done.")'/>
+		
+	<!-- all 3 above -->
+	<!-- check dev tool/timeline ,profiling -->
+	<button label="I am all together :D" 
+		w:onClick="for(var i = 0; i &lt; 10000000; i++) {new Date()}" 
+		onClick='
+			Thread.sleep(1000);
+			Clients.evalJavaScript("for(var i = 0; i &lt; 10000000; i++) {new Date()}");
+			Clients.showNotification("Phew Done.");'/>
+
+	<!-- JS error after response -->
+	<!-- check dev tool/console tab -->
+	<button label="Am I really slow?" 
+		w:onClick="setTimeout(zk.startProcessing, 1000)"
+		onClick='
+			Clients.evalJavaScript("zk.error = null; zAu.cmd0.showNotification = null;");
+			Clients.showNotification("Phew Done.");'/>
+
+</zk>

@@ -1,0 +1,16 @@
+<hlayout height="300px" >
+	<listbox id="candidateLb" width="300px" vflex="true" />
+	<vlayout>
+		<image id="chooseAllBtn" src="/images/rightrightarrow_g.jpg" style="cursor: pointer" />
+		<image id="chooseBtn" src="/images/rightarrow_g.jpg" style="cursor: pointer" />
+		<image id="removeBtn" src="/images/leftarrow_g.jpg" style="cursor: pointer" />
+		<image id="removeAllBtn" src="/images/leftleftarrow_g.jpg" style="cursor: pointer" />
+	</vlayout>
+	<listbox id="chosenLb" width="300px" vflex="true" />
+	<vlayout>
+		<image id="topBtn" src="/images/upuparrow_g.jpg" style="cursor: pointer" />
+		<image id="upBtn" src="/images/uparrow_g.jpg" style="cursor: pointer" />
+		<image id="downBtn" src="/images/downarrow_g.jpg" style="cursor: pointer" />
+		<image id="bottomBtn" src="/images/downdownarrow_g.jpg" style="cursor: pointer" />
+	</vlayout>
+</hlayout>

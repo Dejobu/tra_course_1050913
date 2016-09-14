@@ -1,0 +1,10 @@
+<zk>
+	<vlayout
+		viewModel="@id('vm')@init('org.zkoss.training.mvvm.HelloVM')">
+		<label value="@load(vm.hello)"/>
+		<separator bar="true"/>
+		enter a name and show "hello [name]" 
+		<textbox value="@save(vm.name)"/>
+		<label value="@load(vm.name)"/>
+	</vlayout>
+</zk>

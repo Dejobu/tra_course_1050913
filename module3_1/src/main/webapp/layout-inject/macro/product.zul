@@ -1,0 +1,6 @@
+<row>
+	Product Name
+	<label id="${arg.id}" value="${arg.name}" />
+	<label value="Page : ${page}" />
+	<label value="SpaceOwner : ${self.spaceOwner}" />
+</row>

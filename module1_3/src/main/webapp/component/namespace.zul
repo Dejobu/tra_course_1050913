@@ -1,0 +1,10 @@
+<zk xmlns:n="native" xmlns:x="xhtml">
+in a .zul file, default namespace is "zul" which is zul component
+<vlayout viewModel="@id('vm')@init('org.zkoss.training.component.TextboxVM')">
+	<textbox value="@bind(vm.value)"/>
+	<x:input value="@bind(vm.value)"/>
+	<n:input type="text" value="@bind(vm.value)"/>
+	<n:input type="text" value="${vm.value}"/>
+</vlayout>
+
+</zk>

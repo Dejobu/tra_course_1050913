@@ -1,0 +1,10 @@
+<zk>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('longop.mvvm.TimerVM')">
+		<button id="btn" label="do multiple steps long operation"
+			onClick="@command('doLongSteps')" />
+		<label value="@load(vm.msg)" />
+		<timer running="@load(vm.isRunning)" repeats="true" delay="500"
+			onTimer="@command('checkStatus')" />
+	</div>
+</zk>

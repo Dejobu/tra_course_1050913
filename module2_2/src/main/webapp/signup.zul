@@ -1,0 +1,51 @@
+<?import org.zkoss.training.shop.controller.SignupVM?> 
+<zk>
+<!--
+* form binding
+* validator 
+ -->
+	<window title="Sign Up" 
+		viewModel="@id('vm') @init('org.zkoss.training.shop.controller.SignupVM')" border="normal" width="450px"
+		validationMessages="@id('vmsgs')">
+		<grid form="@id('fx') @load(vm.user) @save(vm.user, before='submit')@validator(vm.passwordValidator)" >
+			<rows>
+				<row>
+					Name:	<textbox value="@bind(fx.name) @validator(vm.nameConflictValidator)" constraint="no empty"/>
+				</row>
+				<row>
+					Password: <textbox value="@bind(fx.password) " type="password" constraint="no empty"/>
+				</row>
+				<row>
+					Confirm Password: <textbox value="@bind(vm.confirmedPassword)" type="password" constraint="no empty"/>
+				</row>
+				<row align="right" spans="2">
+					<label value="@load(vmsgs[SignupVM.ERR_MSG_KEY])" style="color:red"/>
+				</row>
+				<row align="right" spans="2">
+					<div>
+					<label value="@load(fxStatus.dirty?'*modifed':'')"/>
+					<button label="Reset" onClick="@command('reset')" />
+					<button label="Submit" onClick="@command('submit')" />
+					</div>
+				</row>
+			</rows>
+		</grid>
+		<separator height="50px"/>
+		<groupbox open="true" >
+			<caption label="The value in User object"/>
+		<grid>
+			<rows>
+				<row spans="2">
+					The value in User object
+				</row>
+				<row>
+					Name:	<label value="@load(vm.user.name)" />
+				</row>
+				<row>
+					Password: <label value="@load(vm.user.password)" />
+				</row>
+			</rows>
+		</grid>
+		</groupbox>	
+	</window>
+</zk>

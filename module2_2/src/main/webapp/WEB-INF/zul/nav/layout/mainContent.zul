@@ -1,0 +1,11 @@
+<zk xmlns:x="xhtml">
+	<div>
+		<apply navItem="@load(mainNavigationModel.activeItem)"><!-- a way to render the whole content whenever the activeItem changes -->
+			<label style="font-size: 20px;" value="${navItem.label}"/>
+			<space orient="horizontal"/>
+			<div>
+				<apply templateURI="${navItem.navigationData.includePath}"/>
+			</div>
+		</apply>
+	</div>
+</zk>

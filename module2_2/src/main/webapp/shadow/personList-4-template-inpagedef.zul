@@ -1,0 +1,12 @@
+<?component name="personBoxInPage" templateURI="~./template/personBox.zul"?>
+<?style src="/resources/css/personList.css"?>
+<zk xmlns:sh="shadow">
+	<div viewModel="@id('vm') @init('org.zkoss.training.shadow.PersonListViewModel')">
+		<button iconSclass="z-icon-plus" onClick="@command('addPerson')"/>
+		<div>
+			<sh:forEach items="@init(vm.people)" var="p">
+				<personBoxInPage person="${p}" removeCommand="removePerson"/>
+			</sh:forEach>
+		</div>
+	</div>
+</zk>

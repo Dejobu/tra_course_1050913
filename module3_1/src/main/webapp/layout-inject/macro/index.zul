@@ -1,0 +1,13 @@
+<?page title="Macro Demo" ?>
+<?component name="product" inline="true" macroURI="product.zul"?>
+<zk>	
+	<grid width="600px" >
+		<rows>
+			<product id="ua1" name="iPod" />
+			<product id="ua2" name="iPhone " />
+			<product id="ua3" name="iPad" />
+			<product id="ua4" name="iPod touch" />
+		</rows>
+	</grid>
+	<label value="The Out Side Page : ${page}" />
+</zk>

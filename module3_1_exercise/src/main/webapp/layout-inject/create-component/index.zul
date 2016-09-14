@@ -1,0 +1,6 @@
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('layout.inject.CreateComponentVM')">
+		<button label="Login" onClick="@command('openLoginDialog')" />
+	</window>
+</zk>

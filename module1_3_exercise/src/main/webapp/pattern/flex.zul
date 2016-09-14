@@ -1,0 +1,49 @@
+<zk>
+	<style src="pattern.css" />
+	Fit-the-Rest Flexibility.
+	Parent Requires Width/Height: Incorrect usage! Height is required since Div is minimal height by default
+	<div ><!-- TODO height -->
+		<datebox />
+		<div vflex="1" style="background: yellow" />
+	</div>
+
+	Proportional Flexibility
+	<div width="200px" height="50px"> 
+		<!-- TODO height 1:2 -->
+		<div style="background: blue" vflex="1" hflex="1" />
+		<div style="background: yellow" vflex="2" hflex="1" />
+	</div>
+	
+	Minimum Flexibility - determined by its children
+	<div> <!-- TODO  minimal height -->
+		<label value="determine by my size"
+			style="color:skyblue;font-size:50px" />
+	</div>
+
+
+	Don't specify Minimum on a parent and 1 on a child: mutually depending make components 0px
+	<vlayout hflex="min" height="30px">
+		<div hflex="1" vflex="1" style="background: yellow"></div>
+	</vlayout>
+	
+	workaround: some child components has width
+	<vlayout hflex="min" height="75px">
+		<div hflex="1" vflex="1" style="background: yellow">150px</div>
+		<div width="100px" vflex="1" style="background: cyan">
+			100px
+		</div>
+		<div width="150px" vflex="1" style="background: red">150px</div>
+	</vlayout>
+	
+	"min" doesn't grow automatically
+	Clients.resize() for "min"
+	<div height="200px">
+    <div id="div" vflex="1" hflex="1" style="background: skyblue">blue</div>
+    <button label="vflex to min">
+        <attribute name="onClick"><![CDATA[
+            div.setVflex("min");
+            Clients.resize(div);
+        ]]></attribute>
+    </button>
+	</div>
+</zk>

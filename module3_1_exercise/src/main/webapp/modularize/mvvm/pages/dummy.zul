@@ -1,0 +1,4 @@
+<zk xmlns:x="xhtml">
+	PAGE DUMMY
+	<label value="@load(mainNavigationModel.activeItem.label)"/>
+</zk>

@@ -1,0 +1,22 @@
+<?style src="/resources/css/personList.css"?>
+<?import org.zkoss.training.domain.*?>
+<zk xmlns:sh="shadow">
+	<div viewModel="@id('vm') @init('org.zkoss.training.shadow.PersonListViewModel')">
+		<button iconSclass="z-icon-plus" onClick="@command('addPerson')"/>
+		<div>
+			<sh:forEach items="@init(vm.people)" var="p">
+				<div sclass="personBox" width="100px">
+					<a iconSclass="z-icon-times" onClick="@command('removePerson', person=p)" style="float: right;"/>
+					<image src="@init(p.icon)"/>
+					<div>
+						<label value="@init(p.name)"/>
+						<span sclass="@init(p.gender eq GenderType.MALE ? 'z-icon-mars' : p.gender eq GenderType.FEMALE ? 'z-icon-venus' : 'z-icon-genderless')"/>
+					</div>
+					<div>
+						<label value="@init(p.age)"/>
+					</div>
+				</div>
+			</sh:forEach>
+		</div>
+	</div>
+</zk>

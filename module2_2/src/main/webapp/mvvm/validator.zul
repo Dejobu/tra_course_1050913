@@ -1,0 +1,42 @@
+<zk>
+
+	<window viewModel="@id('vm') @init('org.zkoss.training.mvvm.ValidatorVM')"  validationMessages="@id('vmsgs')">
+		<vlayout>
+			validate single field
+			<textbox value="@bind(vm.email) @validator('org.zkoss.training.mvvm.EmailValidator')"/>
+			<label value="@load(vm.email)"/>
+		</vlayout>
+		<separator bar="true"/>
+		<vlayout>
+			accept parameters: price should be 0 ~ 100
+			<intbox value="@bind(vm.price) @validator(vm.priceRangeValidator, min=0, max=100)"></intbox>
+			<label value="@load(vmsgs['price'])" style="color:red"/>
+		</vlayout>
+		<separator bar="true"/>
+		<vlayout>
+			JSR 303 bean validator.
+			<div>
+			Name: <textbox id="nameBox" value="@bind(vm.person.name) @validator('beanValidator')"/>
+			<label value="@load(vmsgs[nameBox])" style="color:red"/>
+			Age: <intbox id="ageBox" value="@bind(vm.person.age) @validator('beanValidator')" />
+			<label value="@load(vmsgs[ageBox])" style="color:red"/> 
+			</div>
+			Message:
+			<forEach items="@load(vmsgs.texts)">
+				<label value="@load(each)" style="color:red"/>
+			</forEach>
+		</vlayout>
+		<separator bar="true"/>
+		JSR 303 form bean validator
+		<grid width="600px"
+			form="@id('fx') @load(vm.person) @save(vm.person, after='save') @validator('formBeanValidator', prefix='p_')">
+			<rows>
+				<row>
+			Name: <textbox value="@bind(fx.name)" />
+			<label value="@load(vmsgs['p_name'])" style="color:red"/>
+				</row>
+			</rows>
+		</grid>
+		<button label="save" onClick="@command('save')"/>
+	</window>
+</zk>

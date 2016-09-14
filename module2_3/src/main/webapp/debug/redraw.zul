@@ -1,0 +1,37 @@
+<zk>
+<label multiline="true" >
+* @load(vm.list)
+* open inner groupbox and input 
+* Add a tab and the groupbox closes
+* @load(vm.tabsModel)
+* groupbox won't close after addition
+</label>
+<!-- 
+explain the benefit of ListModelList
+ -->
+<div viewModel="@id('vm')@init('org.zkoss.training.debugging.TabboxViewModel')">
+	<tabbox model="@load(vm.list)" width="600px">
+		<tabs>
+			<template name="model:tab">
+				<tab iconSclass="z-icon-book" label="@load(each.title)"/>
+			</template>
+		</tabs>
+		<tabpanels>
+			<template name="model:tabpanel">
+				<tabpanel>
+					<groupbox open="false" mold="3d">
+						<caption>content</caption>
+						<textbox rows="5" multiline="true" hflex="1" value="@bind(each.content)" />
+					</groupbox>
+					others fields
+				</tabpanel>
+			</template>
+		</tabpanels>
+	</tabbox>
+	<button label="add tab" onClick="@command('add')"/>
+</div>
+<!--
+debug:
+* AU response: outer 
+ -->
+</zk>

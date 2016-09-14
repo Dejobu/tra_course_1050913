@@ -1,0 +1,35 @@
+<zk>
+	2 ViewModels with a parent-child relationship
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm')@init('org.zkoss.training.modularize.ParentViewModel')">
+		Reported Item List:
+		<listbox model="@init(vm.chosenList)" width="300px"
+			height="300px">
+			<template name="model">
+				<listitem>
+					<listcell>
+						<label value="@init(each)" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+
+		<div viewModel="@id('cvm')@init(vm.childVm)">
+			<separator bar="true" height="50px" />
+			Item List:
+			<listbox model="@init(cvm.itemList)" width="300px"
+				height="300px">
+				<template name="model">
+					<listitem>
+						<listcell>
+							<label value="@init(each)" />
+						</listcell>
+						<listcell>
+							<button label="report" onClick="@command('report', item=each)"/>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</div>
+	</div>
+</zk>

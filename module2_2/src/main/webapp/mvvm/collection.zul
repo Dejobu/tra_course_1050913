@@ -1,0 +1,18 @@
+<zk>
+<div 
+		viewModel="@id('vm') @init('org.zkoss.training.mvvm.CollectionBindingVM')">
+	<listbox model="@load(vm.items)" selectedItem="@bind(vm.selectedItem)" width="200px">
+		<listhead>
+			<listheader label="index" width="50px"/>
+			<listheader label="Item List"/>
+		</listhead>
+		<template name="model" var="item">
+			<listitem>
+				<listcell label="@load(itemStatus.index)"/>
+				<listcell label="@load(item)"></listcell>
+			</listitem>
+		</template>
+	</listbox>
+	Selected: <label value="@load(vm.selectedItem)"/>
+</div>
+</zk>

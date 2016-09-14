@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk>
+	<!-- Turn on if you want to debug JavaScript. Once turned on, the uncompressed JavaScript files will 
+		be loaded. -->
+	<client-config>
+		<debug-js>true</debug-js>
+	</client-config>
+<!-- 
+ 	<library-property>
+		<name>org.zkoss.bind.DebuggerFactory.enable</name>
+		<value>true</value>
+	</library-property>
+ -->	
+	<library-property>
+	    <name>org.zkoss.theme.preferred</name>
+	    <value>atlantic</value>
+	</library-property>	
+<!-- 
+	<listener>
+	   <listener-class>org.zkoss.training.lifecycle.TrainingExecutionMonitor</listener-class>
+	</listener>
+	<listener>
+	   <listener-class>org.zkoss.training.lifecycle.TrainingUiLifecycle</listener-class>
+	</listener>
+	
+	<listener>
+	   <listener-class>org.zkoss.training.lifecycle.TrainingExecutionListener</listener-class>
+	</listener>
+ -->		
+</zk>

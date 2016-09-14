@@ -1,0 +1,18 @@
+<zk>
+	<window title="Property Binding" 
+		viewModel="@id('vm') @init('org.zkoss.training.mvvm.FormBindingVM')">
+		<vlayout>
+			<textbox value="@bind(vm.user1.name)" />
+			<textbox value="@bind(vm.user1.password)" />
+		</vlayout>
+	</window>
+	<window title="Form Binding" 
+		viewModel="@id('vm') @init('org.zkoss.training.mvvm.FormBindingVM')">
+		<vlayout form="@id('fx') @load(vm.user2) @save(vm.user2, after='save')">
+			<textbox value="@bind(fx.name)" />
+			<textbox value="@bind(fx.password)" />
+			Dirty Status: <label value="@load(fxStatus.dirty)" />
+			<button label="Save" onClick="@command('save')" />
+		</vlayout>
+	</window>
+</zk>

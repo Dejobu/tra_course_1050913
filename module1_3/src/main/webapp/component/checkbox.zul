@@ -1,0 +1,17 @@
+<zk>
+	<window title="Checkbox demo" border="normal" width="350px">
+		<checkbox id="apple" label="Apple" onCheck="doChecked()" />
+		<checkbox id="orange" label="Orange" onCheck="doChecked()" />
+		<checkbox id="banana" label="Banana" onCheck="doChecked()" />
+		<hbox>
+			You have selected :
+			<label id="fruit2" />
+		</hbox>
+		<zscript><![CDATA[
+	public void doChecked() { fruit2.value = (apple.isChecked() ? apple.label+' ' : "") 
+                     + (orange.isChecked() ? orange.label+' ' : "") 
+                     + (banana.isChecked() ? banana.label+' ' : "");
+             }
+]]></zscript>
+	</window>
+</zk>

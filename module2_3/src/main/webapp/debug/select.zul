@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="Sample" contentType="text/html;charset=UTF-8"?>
+<zk>
+<label multiline="true">
+Steps to reproduce the issue:
+1. in the bandbox for a DB system, type 'm'
+2. press ctrl+down to select "MySQL"
+3. press enter to select the item
+
+Expected result:
+"MySQL" appears in the bandbox.
+
+</label>
+	<window title="Sample"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('org.zkoss.training.debugging.case3.ContainerModel')" onCreate="@command('windowCreate')">
+		<grid span="true">
+			<rows>
+				<!-- DB System -->
+				<row valign="top" align="left">
+					<label value="DB System" />
+					<bandbox id="dbsSrc" mold="rounded" width="100%"
+						readonly="false" sclass="asg-bandbox-sti" autodrop="true"
+						tooltiptext="@load(vm.srcLabelsAndValues.combo[0].filterValue)"
+						onOpen="dbsSrcCombo.selectItem(null);"
+						onChange="@command('changeSrcFilter', level='0')"
+						ctrlKeys="^#down^#up"
+						onCtrlKey="dbsSrcCombo.setFocus(true); dbsSrcCombo.selectItem(dbsSrcCombo.getItemAtIndex(0));"
+						value="@bind(vm.srcLabelsAndValues.combo[0].filterValue)"
+						instant="true">
+						<bandpopup>
+							<listbox mold="paging" autopaging="false"
+								pageSize="3" width="450px"
+								id="dbsSrcCombo"
+								model="@load(vm.srcLabelsAndValues.combo[0].itemsList)"
+								selectedItem="@bind(vm.srcLabelsAndValues.combo[0].selectedValue)"
+								onOK="@command('srcDbSystemSelect')"
+								onClick="@command('srcDbSystemSelect')">
+								<template name="model" var="item">
+									<listitem value="@load(item)"
+										label="@load(item)" tooltiptext="@load(item)" />
+								</template>
+								<listhead>
+									<listheader
+										label="@load(vm.srcLabelsAndValues.combo[0].label)" />
+								</listhead>
+								<attribute name="onOK"><![CDATA[
+	dbsSrc.value = dbsSrcCombo.selectedItem.label;
+	dbsSrc.close();
+]]></attribute>
+									<attribute name="onClick"><![CDATA[
+	if(dbsSrcCombo.selectedItem!=null){
+		dbsSrc.value = dbsSrcCombo.selectedItem.label;
+		dbsSrc.close();
+	}
+]]></attribute>
+									<attribute name="onCancel"><![CDATA[
+	dbsSrc.close();
+	dbsSrc.focus();
+]]></attribute>
+								</listbox>
+							</bandpopup>
+						</bandbox>
+					</row>
+					<!-- Database -->
+					<row valign="top" align="left">
+						<label
+							value="Database (onOK + onClick)"/>
+						<bandbox id="dbSrc" mold="rounded" width="100%"
+							readonly="false" autodrop="true"
+							tooltiptext="@load(vm.srcLabelsAndValues.combo[1].filterValue)"
+							onOpen="dbSrcCombo.selectItem(null);"
+							onChange="@command('changeSrcFilter', level='1')"
+							ctrlKeys="^#down^#up" onCtrlKey="dbSrcCombo.setFocus(true); dbSrcCombo.selectItem(dbSrcCombo.getItemAtIndex(0))"
+							value="@bind(vm.srcLabelsAndValues.combo[1].filterValue)"
+							instant="true">
+							<bandpopup>
+								<listbox mold="paging"
+									autopaging="false" pageSize="3"
+									width="450px" id="dbSrcCombo"
+									model="@load(vm.srcLabelsAndValues.combo[1].itemsList)"
+									selectedItem="@bind(vm.srcLabelsAndValues.combo[1].selectedValue)"
+									onOK="@command('srcDbSelect')"
+									onClick="@command('srcDbSelect')">
+									<template name="model" var="item">
+										<listitem value="@load(item)"
+											label="@load(item)" tooltiptext="@load(item)" />
+									</template>
+									<listhead>
+										<listheader
+											label="@load(vm.srcLabelsAndValues.combo[1].label)" />
+									</listhead>
+									<attribute name="onOK"><![CDATA[
+	dbSrc.value = dbSrcCombo.selectedItem.label;
+	dbSrc.close();
+]]></attribute>
+									<attribute name="onClick"><![CDATA[
+	if(dbSrcCombo.selectedItem!=null){
+		dbSrc.value = dbSrcCombo.selectedItem.label;
+		dbSrc.close();
+	}
+]]></attribute>
+									<attribute name="onCancel"><![CDATA[
+	dbSrc.close();
+	dbSrc.focus();
+]]></attribute>
+								</listbox>
+							</bandpopup>
+						</bandbox>
+					</row>
+					<!-- Schema -->
+					<row valign="top" align="left">
+						<label
+							value="Schema (onSelect)"/>
+						<bandbox id="schSrc" mold="rounded" width="100%"
+							readonly="false" autodrop="true"
+							tooltiptext="@load(vm.srcLabelsAndValues.combo[2].filterValue)"
+							onOpen="dbSrcCombo.selectItem(null);"
+							onChange="@command('changeSrcFilter', level='2')"
+							ctrlKeys="^#down^#up" onCtrlKey="schSrcCombo.setFocus(true); schSrcCombo.selectItem(schSrcCombo.getItemAtIndex(0))"
+							value="@bind(vm.srcLabelsAndValues.combo[2].filterValue)"
+							instant="true">
+							<bandpopup>
+								<listbox mold="paging"
+									autopaging="false" pageSize="2"
+									width="450px" id="schSrcCombo"
+									model="@load(vm.srcLabelsAndValues.combo[2].itemsList)"
+									selectedItem="@bind(vm.srcLabelsAndValues.combo[2].selectedValue)"
+									onSelect="@command('srcSchSelect')">
+									<template name="model" var="item">
+										<listitem value="@load(item)"
+											label="@load(item)" tooltiptext="@load(item)" />
+									</template>
+									<listhead>
+										<listheader
+											label="@load(vm.srcLabelsAndValues.combo[2].label)" />
+									</listhead>
+	<attribute name="onSelect"><![CDATA[
+	if(dbSrcCombo.selectedItem!=null){
+		dbSrc.value = dbSrcCombo.selectedItem.label;
+		dbSrc.close();
+	}
+]]></attribute>
+									<attribute name="onCancel"><![CDATA[
+	dbSrc.close();
+	dbSrc.focus();
+]]></attribute>
+								</listbox>
+							</bandpopup>
+						</bandbox>
+					</row>
+				</rows>
+			</grid>
+Press 'Ctrl+Down' to open the bandbox popup
+	</window>
+</zk>	

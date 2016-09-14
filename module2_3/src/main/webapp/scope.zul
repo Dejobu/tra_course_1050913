@@ -1,0 +1,31 @@
+<zk>
+<vlayout >
+	<label value="${session}"/>
+	<label value="${desktop}"/>
+	<label value="${page}"/>
+	space owner:<label value="${self.spaceOwner}"/>
+</vlayout>
+<separator bar="true"/>
+apply:
+<vlayout >
+<apply templateURI="scopeInclude.zul"/>
+</vlayout>
+
+<separator bar="true"/>
+instant mode include
+<vlayout >
+<include src="scopeInclude.zul"/>
+</vlayout>
+
+<separator bar="true"/>
+defer mode include
+<vlayout >
+<include src="scopeInclude.zul" mode="defer"/>
+</vlayout>
+
+<separator bar="true"/>
+<vlayout>
+iframe
+<iframe src="scopeInclude.zul" width="100%"/>
+</vlayout>
+</zk>

@@ -1,0 +1,15 @@
+<?init class="org.zkoss.training.modularize.data.MainNavigationModelInit"?>
+<?component name="sidebar" templateURI="/modularize/mvvm/sidebar.zul"?>
+<?component name="mainContent" templateURI="/modularize/mvvm/mainContent.zul"?>
+<zk>
+	2 separate ViewModels communicate each other with a shared object (desktop attribute) instead of a global command
+	<div style="position: relative;" apply="org.zkoss.bind.BindComposer" >
+		<div width="200px" style="position: absolute; top: 0; left: 0;">
+			<label style="font-size: 30px" value="Navigation"/>
+			<sidebar/>
+		</div>
+		<div style="margin-left: 200px;">
+			<mainContent/>
+		</div>
+	</div>
+</zk>

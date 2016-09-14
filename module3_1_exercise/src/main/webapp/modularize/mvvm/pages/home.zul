@@ -1,0 +1,9 @@
+<zk>
+	WELCOME to the Navigation Demo
+	<separator/>
+	<a href="#Users" label="Users"/> | 
+	<a href="#Catalog" label="Catalog"/> |  
+	<a href="#Support" label="Support"/> |  
+	<a href="#Sales" label="Sales"/> |  
+	<a href="#Administrators" label="Administrators"/>
+</zk>

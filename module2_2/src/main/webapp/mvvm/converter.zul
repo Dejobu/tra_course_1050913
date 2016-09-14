@@ -1,0 +1,13 @@
+<zk>
+
+	<window viewModel="@id('vm') @init('org.zkoss.training.mvvm.ConverterVM')">
+		<vlayout>
+			<datebox value="@bind(vm.oneDay)" /> <label value="@load(vm.oneDay) @converter('formattedDate', format='yyyy/MM/dd')"/>
+		</vlayout>
+		<separator bar="true"/>
+		<vlayout>
+		Married: <label value="@load(vm.married) @converter(vm.marriageStatusConverter)" />
+		<button label="Change Marriage Status" onClick="@command('changeMarriageStatus')" />
+		</vlayout>
+	</window>
+</zk>

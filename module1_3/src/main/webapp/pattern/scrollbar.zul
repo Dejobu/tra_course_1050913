@@ -1,0 +1,22 @@
+<zk>
+<style src="pattern.css"/>
+	<vlayout height="100px" width="100px" sclass="box" >
+		<div  height="200px" style="background:SKYBLUE">
+		200px
+		no scroll bar
+		content is cut
+		</div>
+	</vlayout>
+	<vlayout height="100px" width="100px" sclass="box" style="overflow:auto">
+		<div  height="200px" style="background:SKYBLUE">
+		200px
+		with overflow:auto
+		</div>
+	</vlayout>	
+	<window height="100px"  width="200px" border="normal" contentStyle="overflow:auto">
+		<div  height="200px" style="background:SKYBLUE">
+		200px
+		contentStyle with overflow:auto
+		</div>
+	</window>
+</zk>

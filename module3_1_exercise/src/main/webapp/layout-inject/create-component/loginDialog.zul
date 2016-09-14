@@ -1,0 +1,28 @@
+<zk>
+	<window title="Login" border="normal" mode="modal" position="center" width="380px" closable="true" >
+		<vlayout style="padding: 10px" spacing="10px">
+			<label id="message" value="" />
+			<listbox>
+				<listhead>
+					<listheader hflex="min"></listheader>
+					<listheader></listheader>
+				</listhead>
+				<listitem>
+					<listcell label="Name" />
+					<listcell>
+						<textbox value="${arg.username}" width="200px">
+						</textbox>
+					</listcell>
+				</listitem>
+				<listitem>
+					<listcell label="Password" />
+					<listcell>
+						<textbox type="password" value="${arg.password}" width="200px">
+						</textbox>
+					</listcell>
+				</listitem>
+			</listbox>
+			<button label="Login"></button>
+		</vlayout>
+	</window>
+</zk>

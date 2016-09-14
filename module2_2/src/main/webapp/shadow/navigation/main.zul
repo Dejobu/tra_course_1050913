@@ -1,0 +1,17 @@
+<?component name="sidebar" templateURI="/WEB-INF/zul/nav/layout/sidebar.zul"?>
+<?component name="mainContent" templateURI="/WEB-INF/zul/nav/layout/mainContent.zul"?>
+
+<?import org.zkoss.training.navigation.SidebarViewModel?>
+<?init class="org.zkoss.training.navigation.data.MainNavigationModelInit"?>
+
+<zk xmlns:x="xhtml">
+	<div apply="org.zkoss.bind.BindComposer" style="position: relative;" onBookmarkChange="@global-command(SidebarViewModel.BOOKMARK_CHANGED, bookmark=event.bookmark)">
+		<div width="200px" style="position: absolute; top: 0; left: 0;">
+			<label style="font-size: 30px" value="Navigation"/>
+			<sidebar/>
+		</div>
+		<div style="margin-left: 200px;">
+			<mainContent/>
+		</div>
+	</div>
+</zk>

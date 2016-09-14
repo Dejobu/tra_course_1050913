@@ -1,0 +1,11 @@
+<zk xmlns:n="native">
+	<style src="slider.css" />
+	<script type="text/javascript" src="slider.js"></script>
+
+	<div id="root" style="padding:20px; width:300px" viewModel="@id('vm')@init('org.zkoss.training.client.SliderViewModel')">
+		<n:input id="myslider" type="range" min="0" max="50" value="0" />
+		<div style="margin-top:30px">
+			<label value="@load(vm.value)" style="font-size:20px"/>
+		</div>
+	</div>
+</zk>

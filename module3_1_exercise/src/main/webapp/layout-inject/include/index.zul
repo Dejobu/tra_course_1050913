@@ -1,0 +1,17 @@
+<zk>
+	<window id="win0" title="Index ${page}" border="normal" width="900px">
+		<vlayout width="400px">
+			Instant 1
+			<include src="include.zul" mode="instant" />
+			Defer 1
+			<include src="include.zul" mode="defer" />
+		</vlayout>
+		<separator bar="true" spacing="20px" />
+		Include with arguments:
+		<vlayout>
+			<include src="include.zul?somearg=someArgValue" some="somethingvalue" anotherthing="val1" mode="instant"></include>
+			<include id="inc1" mode="defer"></include>
+			<button label="Add src" onClick='inc1.setSrc("include.zul?somearg=someArgValue")'></button>
+		</vlayout>
+	</window>
+</zk>

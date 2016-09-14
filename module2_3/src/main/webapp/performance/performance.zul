@@ -1,0 +1,36 @@
+<zk>
+<!--
+* show low performance in dev tool/ profiling
+* improve the client-side performance by
+** observe in dev tool/ profiling
+** remove hflex
+** enable 
+* increase object number in a model
+** observe the number of component in jvisualvm
+** enable ROD, observe again
+* increase columns
+** cannot improve this case, reduce column numbers
+ -->
+	<zscript><![CDATA[
+		ListModelList countries = new ListModelList(Locale.getISOCountries());
+		//countries.addAll(countries);
+		//countries.addAll(countries);
+		List languages = Arrays.asList(Locale.getISOLanguages()).subList(0, 10);
+	]]></zscript>
+
+	<div>
+		<grid model="${countries}"><!-- height="700px" -->
+<!-- 			<custom-attributes org.zkoss.zul.grid.rod="true"/> -->
+			<template name="model">
+				<row>
+					<custom-attributes country="${each}"/>
+					<forEach items="${languages}" var="language">
+						<cell>
+							<label value="${country} - ${language}" hflex="1"/>
+						</cell>
+					</forEach>
+				</row>
+			</template>
+		</grid>
+	</div>	
+</zk>

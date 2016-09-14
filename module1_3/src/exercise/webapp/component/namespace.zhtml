@@ -1,0 +1,12 @@
+<html xmlns:n="native">
+	<body>
+		in a .zhtml, the default component set is xhtml
+		<z:vlayout
+			viewModel="@id('vm')@init('org.zkoss.training.component.TextboxVM')">
+			<!-- TODO create a zul component -->
+			<input value="@bind(vm.value)" />
+			<n:input type="text" value="@bind(vm.value)" />
+			<n:input type="text" value="${vm.value}" />
+		</z:vlayout>
+	</body>
+</html>
