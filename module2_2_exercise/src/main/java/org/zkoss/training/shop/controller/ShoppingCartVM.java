@@ -45,9 +45,9 @@ public class ShoppingCartVM {
 
 	//TODO pass Product, quantity
 	public void addToCart() {
-		getCartManager().add(new CartItem(product, quantity));
+//		getCartManager().add(new CartItem(product, quantity));
 		//clear the model and add new items by getCartManager().listItems()
-		refreshUIStatus(ShoppingCartVM.ADD);
+//		refreshUIStatus(ShoppingCartVM.ADD);
 	}
 
 	@Command //default command name
@@ -104,9 +104,9 @@ public class ShoppingCartVM {
 	}
 	
 	private void refreshUIStatus(String status) {
-		abc 
-		dasdf
-		
+//		abc 
+//		dasdf
+//		
 		if (ShoppingCartVM.REMOVE.equals(status)
 				|| ShoppingCartVM.CLEAR.equals(status)) {
 			selectedCartItem = null;
