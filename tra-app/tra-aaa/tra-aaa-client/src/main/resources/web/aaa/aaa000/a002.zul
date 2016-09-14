@@ -1,0 +1,9 @@
+<?page title="Button"?>
+
+<zk>
+	<window viewModel="@id('vm') @init('tra.irts4.aaa000.ui.vm.A002')">
+		<label value="@load(vm.message)" />
+		<separator></separator>
+		<button label="click!" onClick="@command('changemsg')" />
+	</window>
+</zk>

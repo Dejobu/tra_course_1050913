@@ -1,0 +1,14 @@
+<vlayout width="300px">
+    <label value="停靠站：" style="font-size: 14px; font-weight: bold;" />
+    <grid>
+        <rows>
+            <row>
+                <label value="台北" />
+                <label value="新竹" />
+                <label value="台中" />
+                <label value="嘉義" />
+                <label value="高雄" />
+            </row>
+        </rows>
+    </grid>
+</vlayout>

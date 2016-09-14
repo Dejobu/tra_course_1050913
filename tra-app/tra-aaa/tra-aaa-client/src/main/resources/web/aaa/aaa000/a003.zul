@@ -1,0 +1,37 @@
+<?page title="Button"?>
+
+<zk>
+	<window viewModel="@id('vm') @init('tra.irts4.aaa000.ui.vm.A003')">
+		<!-- 使用Command -->
+		<radiogroup onCheck="choice.value = self.selectedItem.label">
+			<label sclass="fn-title">取得管道</label>
+			<radio label="網路廣告"
+					  onCheck="@command('getInfo', checkMark=self.checked, method='網路廣告')" />
+			<radio label="電視廣告"
+					  onCheck="@command('getInfo', checkMark=self.checked, method='電視廣告')" />
+			<separator></separator>
+		</radiogroup>
+		<label id="choice" />
+		<separator></separator>
+		<label value="@load(vm.info)" />
+
+
+		<separator></separator>
+		<separator></separator>
+		<separator bar="true" />
+		
+		
+		<hbox>
+			<checkbox id="i1" label="電影" onCheck="@command('getInsterest', checkMark=self.checked, type='電影')" />
+			<checkbox id="i2" label="運動" onCheck="@command('getInsterest', checkMark=self.checked, type='運動')" />
+			<checkbox id="i3" label="遊戲" onCheck="@command('getInsterest', checkMark=self.checked, type='遊戲')" />
+			<checkbox id="i4" label="旅遊" onCheck="@command('getInsterest', checkMark=self.checked, type='旅遊')" />
+		</hbox>
+		<hbox>
+			You have selected :
+			<label value="@load(vm.interest)" />
+		</hbox>
+	
+
+	</window>
+</zk>

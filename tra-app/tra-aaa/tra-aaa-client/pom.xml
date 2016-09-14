@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>tra-app</groupId>
+		<artifactId>tra-aaa</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>tra-aaa-client</artifactId>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.github.bricksbz.tra-fwk</groupId>
+<!-- 			<groupId>tra-fwk</groupId> -->
+			<artifactId>tra-fwk-client-zk</artifactId>
+			<version>${tra.fwk.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>tra-app</groupId>
+			<artifactId>tra-aaa-server</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+	</dependencies>
+</project>

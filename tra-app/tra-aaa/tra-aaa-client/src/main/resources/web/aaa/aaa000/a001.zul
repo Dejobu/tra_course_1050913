@@ -1,0 +1,21 @@
+<?page title="Login"?>
+<zk>
+	<window id="loginWin" viewModel="@id('vm') @init('tra.irts4.aaa000.ui.vm.A001')">
+		<label value="@init(vm.message)" />
+		
+		<grid>
+			<rows>
+				<row>
+					Account:
+					<textbox value="@bind(vm.account)" />
+					<label value="@load(vm.account)" />
+				</row>
+				<row>
+					Password:
+					<textbox value="@bind(vm.password)" type="password" />
+					<label value="@load(vm.password)" />
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

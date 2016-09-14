@@ -1,0 +1,138 @@
+<?page title="車次座位資料" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+	<window viewModel="@id('vm') @init('tra.irts4.aaa100.ui.vm.A101')"
+			validationMessages="@id('vmsgs')" onOK="@command('search')" onCancel="@command('reset')">
+		<groupbox title="查詢條件" width="70%">
+			<hbox align="center">
+	            <label value="運轉期間" />
+	            
+	            <datebox id="startTime" value="@bind(vm.searchDTO.startTime)" format="yyyy/MM/dd HH:mm:ss" cols="12" width="230px" />
+				<label value="@bind(vmsgs[startTime])" sclass="red" />
+				
+				<label value="至" />
+				
+	            <datebox id="endTime" value="@bind(vm.searchDTO.endTime)" format="yyyy/MM/dd HH:mm:ss" cols="12" width="230px" />
+				<label value="@load(vmsgs[endTime])" sclass="red" />
+				
+				<label value="車次" />
+				<textbox value="@bind(vm.searchDTO.no)" />
+				
+				<button label="查詢" disabled="" onClick="@command('search')" />
+		    </hbox>
+		</groupbox>
+
+		<groupbox title="篩選條件 ＋/-" width="70%" apply="tra.irts4.aaa100.ui.vm.A101">
+			<hlayout>
+				<div>
+					<label sclass="fn-title">車種</label>
+					<separator></separator>
+					<checkbox id="puyumaCheckbox" label="普悠瑪" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox id="tarokoCheckbox" label="太魯閣" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox id="tzeChiangCheckbox" label="自強" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox id="chuKuangCheckbox" label="莒光"	sclass="fn-condi" />
+					<separator></separator>
+					<checkbox id="fuHsingCheckbox" label="復興" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox id="localTrainCheckbox" label="區間" sclass="fn-condi" />
+				</div>
+					
+				<div>
+					<label sclass="fn-title">行駛區間</label>
+					<separator></separator>
+						
+					<label value="起" sclass="fn-condi" />
+					<textbox id="start" value="" />
+					<label value="訖" sclass="fn-condi" />
+					<textbox id="end" value="" />
+						
+					<separator></separator>
+					<label sclass="fn-condi">停靠站</label>
+					<zk>
+						<zscript>
+							<![CDATA[
+								String[] stationName = { "011松山", "012新竹", "013台中", "014嘉義", "015高雄" };
+								ListModelList model = new ListModelList(stationName);
+							]]>
+						</zscript>
+						<selectbox model="${model}" onSelect=''>
+							<template name="model">${each}</template>
+						</selectbox>
+					</zk>
+				</div>
+					
+				<div>
+					<!-- 使用Command -->
+					<label sclass="fn-title">運轉方式</label>
+					<separator></separator>
+					<checkbox label="一" onCheck="@command('choiceTransferMethod', checkMark=self.checked, type='1')" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox label="二" onCheck="@command('choiceTransferMethod', checkMark=self.checked, type='2')" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox label="三" onCheck="@command('choiceTransferMethod', checkMark=self.checked, type='3')" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox label="四" onCheck="@command('choiceTransferMethod', checkMark=self.checked, type='4')" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox label="五" onCheck="@command('choiceTransferMethod', checkMark=self.checked, type='5')" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox label="六" onCheck="@command('choiceTransferMethod', checkMark=self.checked, type='6')" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox label="七" onCheck="@command('choiceTransferMethod', checkMark=self.checked, type='7')" sclass="fn-condi" />
+				</div>
+					
+				<div>
+					<label sclass="fn-title">行駛方向</label>
+					<separator></separator>
+					<checkbox label="順行" sclass="fn-condi" />
+					<separator></separator>
+					<checkbox label="逆行" sclass="fn-condi" />
+				</div>
+					
+				<div>
+					<checkbox label="跨日運行" sclass="fn-condi" />
+				</div>
+			</hlayout>
+		</groupbox>
+
+		<groupbox id="searchResultArea" title="查詢結果">
+			<listbox model="@load(vm.trainModel)" mold="paging" checkmark="fasle" multiple="false" emptyMessage="查詢無資料" pageSize="5" 
+					onSelect="@command('queryTra')">
+					
+					<listhead sizable="true">
+						<listheader sclass="resultTitle" label="車次" hflex="1" />
+						<listheader sclass="resultTitle" label="車種" hflex="1" />
+						<listheader sclass="resultTitle" label="開車時間" hflex="3" />
+						<listheader sclass="resultTitle" label="到站時間" hflex="3" />
+						<listheader sclass="resultTitle" label="起訖站" hflex="1" />
+						<listheader sclass="resultTitle" label="線別" hflex="1" />
+						<listheader sclass="resultTitle" label="行駛方向" hflex="1" />
+						<listheader sclass="resultTitle" label="跨日" hflex="1" />
+						<listheader sclass="resultTitle" label="運轉方式" hflex="2" />
+						<listheader sclass="resultTitle" label="操作" hflex="1" />
+					</listhead>
+						
+					<template name="model" var="result">
+						<listitem popup="detail_${each.id}, position=after_pointer">
+							<listcell sclass="resultString"><label value="@init(result.no)" /></listcell>
+							<listcell sclass="resultString"><label value="@init(result.type)" /></listcell>
+							<listcell sclass="resultString"><label value="@init(result.startTime) @converter(vm.traResult.dateFormatConvert)" /></listcell>
+							<listcell sclass="resultString"><label value="@init(result.endTime) @converter(vm.traResult.dateFormatConvert)" /></listcell>
+							<listcell sclass="resultString"><label value="@init(result.originDest)" /></listcell>
+							<listcell sclass="resultString"><label value="@init(result.line)" /></listcell>
+							<listcell sclass="resultString"><label value="@init(result.travelWay)" /></listcell>
+							<listcell sclass="resultString"><label value="@init(result.crossDay) @converter(vm.traResult.crossDayConvert)" /></listcell>
+							<listcell sclass="resultString"><label value="@init(result.transferMethod)" /></listcell>
+							<listcell sclass="resultString"><button label="Edit" onClick="@command('editTra')" /></listcell>
+						</listitem>
+					</template>
+	 		</listbox>
+			<popup id="detail_${each.id}">
+       			<include src="a101p1.zul" orderItem="${each}" />
+            </popup>
+		</groupbox>
+		
+	</window>
+</zk>
